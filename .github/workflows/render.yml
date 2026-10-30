@@ -11,6 +11,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install edge-tts mutagen
+      - run: python scripts/narrar.py
       - run: npm install
       - run: npm run render
       - uses: actions/upload-artifact@v4

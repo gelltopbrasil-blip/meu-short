@@ -1,7 +1,9 @@
 import {
   AbsoluteFill,
+  Audio,
   Sequence,
   interpolate,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -55,6 +57,7 @@ export const Short = ({ roteiro }) => {
         const el = (
           <Sequence key={i} from={inicio} durationInFrames={dur}>
             <Cena texto={c.texto} visual={c.visual} />
+            {c.audio ? <Audio src={staticFile(c.audio)} /> : null}
           </Sequence>
         );
         inicio += dur;
