@@ -1,0 +1,9 @@
+{
+  "titulo": "Poço Artesiano",
+  "cenas": [
+    { "texto": "Você sabe como funciona um poço artesiano?", "segundos": 3 },
+    { "texto": "A água da chuva infiltra na zona de recarga.", "segundos": 4 },
+    { "texto": "Ela fica presa entre camadas pouco permeáveis.", "segundos": 4 },
+    { "texto": "A pressão faz a água subir sozinha pelo poço.", "segundos": 4 }
+  ]
+}
