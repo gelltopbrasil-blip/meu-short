@@ -1,50 +1,35 @@
 import {
   AbsoluteFill,
-  Img,
   Sequence,
   interpolate,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { Corte } from "./Corte";
 
-const Cena = ({ texto, imagem }) => {
+const Cena = ({ texto, visual }) => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
   const opacidade = interpolate(frame, [0, 12], [0, 1], {
     extrapolateRight: "clamp",
   });
   const subida = interpolate(frame, [0, 12], [40, 0], {
     extrapolateRight: "clamp",
   });
-  const zoom = interpolate(frame, [0, durationInFrames], [1, 1.12]);
   return (
-    <AbsoluteFill style={{ background: "#0b2545" }}>
-      {imagem ? (
-        <AbsoluteFill style={{ overflow: "hidden" }}>
-          <Img
-            src={staticFile(imagem)}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transform: `scale(${zoom})`,
-            }}
-          />
-        </AbsoluteFill>
-      ) : null}
-      <AbsoluteFill style={{ background: "rgba(0,0,0,0.45)" }} />
+    <AbsoluteFill style={{ background: "linear-gradient(180deg, #0b2545, #13315c)" }}>
+      {visual ? <Corte etapa={visual} /> : null}
       <AbsoluteFill
         style={{
-          justifyContent: "center",
+          justifyContent: "flex-end",
           alignItems: "center",
           padding: 80,
+          paddingBottom: 170,
         }}
       >
         <div
           style={{
             color: "white",
-            fontSize: 80,
+            fontSize: 70,
             fontWeight: 800,
             fontFamily: "sans-serif",
             textAlign: "center",
@@ -69,7 +54,7 @@ export const Short = ({ roteiro }) => {
         const dur = c.segundos * fps;
         const el = (
           <Sequence key={i} from={inicio} durationInFrames={dur}>
-            <Cena texto={c.texto} imagem={c.imagem} />
+            <Cena texto={c.texto} visual={c.visual} />
           </Sequence>
         );
         inicio += dur;
